@@ -5,9 +5,14 @@ public class InvoiceGenerator {
 	private static final int COST_PER_MINUTE = 1;
 	private static final double MIN_FARE = 5;
 
-	public double calculateFare(double distance, int time) {
-		double totalFare = distance * COST_PER_KM + time * COST_PER_MINUTE;
-		return Math.max(totalFare, MIN_FARE);
+	public double calculateFare(Ride ...rides) {
+		double totalFare = 0;
+		double rideFare;
+		for(Ride ride : rides) {
+			rideFare = ride.distance * COST_PER_KM + ride.time * COST_PER_MINUTE;
+			totalFare += Math.max(rideFare, MIN_FARE);
+		}
+		return totalFare;
 	}
 
 }
